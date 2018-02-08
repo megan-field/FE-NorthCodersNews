@@ -36,9 +36,10 @@ class Home extends React.Component {
     }
 
   render() {
-    return (
-        <div className="container">        
-                    <ArticleList voteChangeOnArticle={this.voteChangeOnArticle} articles={this.state.articles} /> 
+      return (
+          <div className="container">        
+
+         <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
                     </div>
     )
 }

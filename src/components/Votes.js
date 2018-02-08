@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {voteArticle} from './api'
 
 const Voter = ({ votes, onDownVote, onUpVote }) => {
     return (
@@ -11,8 +12,9 @@ const Voter = ({ votes, onDownVote, onUpVote }) => {
     )
 }
 
-const ArticleList = ({ articles, voteChangeOnArticle }) => (
+const ArticleList = ({articles, voteChangeOnArticle}) => (
     <div>
+        {console.log(articles)}
         {articles.map((article, i) => {
             let id = article._id;
             const onDownVote = voteChangeOnArticle.bind(null, article._id, 'down');
