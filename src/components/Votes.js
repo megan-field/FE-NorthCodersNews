@@ -20,13 +20,21 @@ const ArticleList = ({ articles, voteChangeOnArticle }) => (
             return (
                 <div key={i}>
                     <Link to={`articles/${id}`}>
-                        <p>{article.title}</p>
+                    <div>
+                        <h1>{article.title}</h1>
+                        <p>{article.body}</p>
+                    </div>
                     </Link>
                     <Voter
                         votes={article.votes}
                         onDownVote={onDownVote}
                         onUpVote={onUpVote}
-                    />
+                        />
+                        <p>Created By:</p>
+                       <Link to={`users/${article.created_by}`}><p>{article.created_by}</p></Link>
+                        <p>{article.comments} comments</p>
+                        <br />
+                        <br />
                 </div>
             )
         })}

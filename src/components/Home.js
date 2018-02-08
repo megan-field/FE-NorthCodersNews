@@ -4,17 +4,17 @@ import {fetchArticles, voteArticle} from './api'
 
 class Home extends React.Component {
     state = {
-        articles: [],
+        articles: []
     }
 
-    componentDidMount() {
-        fetchArticles()
-            .then(res => {
-                this.setState({
-                    articles: res.articles
-                })
+    componentDidMount() { 
+            fetchArticles()
+        .then(res => {
+            this.setState({
+                articles: res.articles,
             })
-            .catch(console.log)
+        })
+        .catch(console.log)
     }
 
 
