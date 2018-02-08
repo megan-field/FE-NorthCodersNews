@@ -11,3 +11,7 @@ export const fetchArticles = (topic) => {
         method: 'PUT'
     }).then(res => res.json());
 }
+
+export const fetchComments = (articleId) => {
+    return  fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`).then(res => res.json())
+}

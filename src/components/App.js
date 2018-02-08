@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
 import ArticlesByTopic from './ArticlesByTopic';
-import ClickedArticle from './ArticlesByUsers';
+import ClickedArticle from './ClickedArticle';
 import Home from './Home'
 import './App.css';
 import { Route, BrowserRouter} from 'react-router-dom';

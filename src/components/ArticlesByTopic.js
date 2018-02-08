@@ -35,6 +35,9 @@ class ArticlesByTopic extends React.Component {
         return (
             <div>
                 <h1>{this.state.topic}</h1>
+                <hr />
+                <br />
+                <br />
                 {this.state.articles &&
                 this.state.articles.map((article, i) => {
                     return (
