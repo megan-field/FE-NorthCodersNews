@@ -22,7 +22,7 @@ class UsersPage extends Component {
             <div>
             {this.state.user[0] &&
             <div>
-                <img src={this.state.user[0].avatar_url} alt="Image not found" />
+                <img src={this.state.user[0].avatar_url} alt="Broken" />
                 <p>{this.state.user[0].username}</p>
                 <p>{this.state.user[0].name}</p>
             </div>

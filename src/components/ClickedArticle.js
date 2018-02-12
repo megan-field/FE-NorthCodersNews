@@ -12,6 +12,7 @@ state = {
 
 componentDidMount() {
     let articleId = this.props.match.params._id
+    console.log(articleId, "GETTING HERE!")
 Promise.all([
     fetchArticles(),
     fetchComments(articleId)

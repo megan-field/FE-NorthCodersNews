@@ -1,5 +1,6 @@
 import React from 'react';
 import {fetchArticles} from './api'
+import {Link} from 'react-router-dom'
 
 class ArticlesByTopic extends React.Component {
     state = {
@@ -42,8 +43,17 @@ class ArticlesByTopic extends React.Component {
                 this.state.articles.map((article, i) => {
                     return (
                         <div key={i}>
+                        <Link to={`/articles/${article._id}`}>
+                        <div>
                             <h2>{article.title}</h2>
                             <p>{article.body}</p>
+                        </div>
+                            </Link>
+                            <p>Created by:</p>
+                            <Link to={`users/${article.created_by}`}><p>{article.created_by}</p></Link>
+                            <p>{article.comments} Comments</p>
+                            <br />
+                            <br />
                         </div>
                     )
                 })}
