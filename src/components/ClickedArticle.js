@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {fetchArticles, fetchComments} from './api'
+import PostComment from './PostComment'
 
 
 class ClickedArticle extends Component {
@@ -12,13 +13,13 @@ state = {
 
 componentDidMount() {
     let articleId = this.props.match.params._id
-    console.log(articleId, "GETTING HERE!")
-Promise.all([
-    fetchArticles(),
-    fetchComments(articleId)
-])
+    Promise.all([
+        fetchArticles(),
+        fetchComments(articleId)
+    ])
     .then(([articleRes, commentsRes]) => {
         let matchedArticle = articleRes.articles.filter(article => article._id === articleId)
+        console.log(commentsRes.comments)
     this.setState({
         comments: commentsRes.comments,
         article: matchedArticle,
@@ -39,6 +40,7 @@ render() {
                 <br />
                 <hr />
                 <br />
+                <PostComment articleId={this.state.articleId} />
                 {this.state.comments.map((comment, i) => {
                     return (
                         <div>

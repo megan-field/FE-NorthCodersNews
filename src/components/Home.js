@@ -19,7 +19,7 @@ class Home extends React.Component {
 
 
     voteChangeOnArticle = (articleId, vote) => {
-        console.log('voteChangeOnArticle')
+        console.log('voteChangeOnArticleHere')
         return voteArticle(articleId, vote)
             .then(body => {
                 const newArticle = body;

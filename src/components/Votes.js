@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {voteArticle} from './api'
 
 const Voter = ({ votes, onDownVote, onUpVote }) => {
     return (
@@ -14,14 +13,13 @@ const Voter = ({ votes, onDownVote, onUpVote }) => {
 
 const ArticleList = ({articles, voteChangeOnArticle}) => (
     <div>
-        {console.log(articles)}
         {articles.map((article, i) => {
             let id = article._id;
             const onDownVote = voteChangeOnArticle.bind(null, article._id, 'down');
             const onUpVote = voteChangeOnArticle.bind(null, article._id, 'up');
             return (
                 <div key={i}>
-                    <Link to={`articles/${id}`}>
+                    <Link to={`/articles/${id}`}>
                     <div>
                         <h1>{article.title}</h1>
                         <p>{article.body}</p>
@@ -33,7 +31,7 @@ const ArticleList = ({articles, voteChangeOnArticle}) => (
                         onUpVote={onUpVote}
                         />
                         <p>Created By:</p>
-                       <Link to={`users/${article.created_by}`}><p>{article.created_by}</p></Link>
+                       <Link to={`/users/${article.created_by}`}><p>{article.created_by}</p></Link>
                         <p>{article.comments} comments</p>
                         <br />
                         <br />

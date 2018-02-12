@@ -1,6 +1,6 @@
 import React from 'react';
-import {fetchArticles} from './api'
-import {Link} from 'react-router-dom'
+import {fetchArticles, voteArticle} from './api'
+import ArticleList from './Votes.js'
 
 class ArticlesByTopic extends React.Component {
     state = {
@@ -32,6 +32,23 @@ class ArticlesByTopic extends React.Component {
             .catch(console.log);
     }
 
+voteChangeOnArticle = (articleId, vote) => {
+        console.log('voteChangeOnArticle TopicArticle')
+        return voteArticle(articleId, vote)
+            .then(body => {
+                const newArticle = body;
+                const newArticles = this.state.articles.map(article => {
+                    if (article._id === newArticle._id) {
+                        return newArticle
+                    }
+                    return article;
+                })
+                this.setState({
+                    articles: newArticles
+                })
+            })
+    }
+
     render() {
         return (
             <div>
@@ -39,24 +56,9 @@ class ArticlesByTopic extends React.Component {
                 <hr />
                 <br />
                 <br />
-                {this.state.articles &&
-                this.state.articles.map((article, i) => {
-                    return (
-                        <div key={i}>
-                        <Link to={`/articles/${article._id}`}>
-                        <div>
-                            <h2>{article.title}</h2>
-                            <p>{article.body}</p>
-                        </div>
-                            </Link>
-                            <p>Created by:</p>
-                            <Link to={`users/${article.created_by}`}><p>{article.created_by}</p></Link>
-                            <p>{article.comments} Comments</p>
-                            <br />
-                            <br />
-                        </div>
-                    )
-                })}
+                        <div className="container">        
+                        <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
+                                   </div>
             </div>
         )
     }
