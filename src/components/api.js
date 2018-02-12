@@ -18,15 +18,19 @@ export const fetchComments = (articleId) => {
 
 export const postingComment = (articleId, comment ) => {
     const data = {"comment": comment}
-    console.log(articleId)
     return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`, {
         method: 'POST',
-        // mode: 'cors',
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json'
         }
     }).then(res => res.json());
+}
+
+export const deletingComment = (commentId) => {
+    return fetch(`https://northcoders-news-api.herokuapp.com/api/comments/${commentId}`, {
+        method: 'DELETE',
+    })
 }
 
 export const fetchUsers = (username) => {

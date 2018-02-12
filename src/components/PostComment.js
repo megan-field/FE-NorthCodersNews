@@ -18,9 +18,8 @@ componentDidMount() {
     handleComment = (event) => {
         event.preventDefault()
       let comment = event.target.comment.value;
-      postingComment(this.state.articleId, comment)
+      postingComment(this.props.articleId, comment)
       .then(res => {
-          console.log(res)
         this.setState({
             comment: res
         })
