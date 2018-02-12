@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {fetchArticles, fetchComments, postingComment, deletingComment} from './api'
-// import PostComment from './PostComment'
-// import postingComment from './api'
+import Moment from 'react-moment';
 import { Link } from 'react-router-dom'
 
 
@@ -21,7 +20,7 @@ componentDidMount() {
     ])
     .then(([articleRes, commentsRes]) => {
         let matchedArticle = articleRes.articles.filter(article => article._id === articleId)
-    this.setState({
+        this.setState({
         comments: commentsRes.comments,
         article: matchedArticle,
         articleId: articleId
@@ -76,6 +75,7 @@ render() {
                     return (
                         <div key={i}>
                             <p>{comment.body}</p>
+                            <Moment fromNow>{comment.created_at}</Moment>
                             <p>Created By:</p>
                        <Link to={`/users/${comment.created_by}`}><p>{comment.created_by}</p></Link>
                                <button type="submit" onClick={() => this.deleteComment(comment._id)}>Delete</button>
@@ -85,6 +85,7 @@ render() {
                     return (
                         <div key={i}>
                         <p>{comment.body}</p>
+                        <Moment fromNow>{comment.created_at}</Moment>
                         <p>Created By:</p>
                    <Link to={`/users/${comment.created_by}`}><p>{comment.created_by}</p></Link>
                     </div>

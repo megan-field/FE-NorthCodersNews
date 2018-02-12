@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 const Voter = ({ votes, onDownVote, onUpVote }) => {
     return (
         <div>
-            <button onClick={onDownVote}>-</button>
+            <button onClick={onDownVote} disabled="false">-</button>
             <span>{votes}</span>
-            <button onClick={onUpVote}>+</button>
+            <button onClick={onUpVote} disabled="true">+</button>
         </div>
     )
 }
@@ -29,7 +29,7 @@ const ArticleList = ({articles, voteChangeOnArticle}) => (
                         votes={article.votes}
                         onDownVote={onDownVote}
                         onUpVote={onUpVote}
-                        />
+                        />               
                         <p>Created By:</p>
                        <Link to={`/users/${article.created_by}`}><p>{article.created_by}</p></Link>
                         <p>{article.comments} comments</p>
