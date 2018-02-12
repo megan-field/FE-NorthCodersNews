@@ -20,8 +20,11 @@ componentDidMount() {
     ])
     .then(([articleRes, commentsRes]) => {
         let matchedArticle = articleRes.articles.filter(article => article._id === articleId)
+        let filteredComments = commentsRes.comments.sort((a, b) => {
+            return b.created_at - a.created_at;
+        })
         this.setState({
-        comments: commentsRes.comments,
+        comments: filteredComments,
         article: matchedArticle,
         articleId: articleId
     })
@@ -34,7 +37,7 @@ handleComment = (event) => {
   postingComment(this.state.articleId, comment)
   .then(res => {
     this.setState({
-        comments: [...this.state.comments, res.comment]
+        comments: [res.comment, ...this.state.comments]
     })
 })
 event.target.comment.value = '';
@@ -46,8 +49,11 @@ deleteComment = (commentId) => {
       if (res.status === 204)  return fetchComments(this.state.articleId)
     })
     .then(commentsRes => {
+        let filteredComments = commentsRes.comments.sort((a, b) => {
+            return b.created_at - a.created_at;
+        })
         this.setState({
-            comments: commentsRes.comments
+            comments: filteredComments
         })
     })
 }
