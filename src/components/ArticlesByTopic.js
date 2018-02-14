@@ -12,7 +12,7 @@ class ArticlesByTopic extends React.Component {
         const topic = this.props.match.params.topic_id
         this.fetchAriclesByTopic(topic);
     }
-
+    
     componentWillReceiveProps(nextProps) {   // triggers a reload when clicking another topic
         const oldTopic = this.props.match.params.topic_id
         const newTopic = nextProps.match.params.topic_id
@@ -23,7 +23,7 @@ class ArticlesByTopic extends React.Component {
 
     fetchAriclesByTopic(topic) {
         fetchArticles(topic)
-            .then((res) => {
+        .then((res) => {
                 this.setState({
                     articles: res.articles,
                     topic: topic
@@ -36,7 +36,7 @@ voteChangeOnArticle = (articleId, vote) => {
         console.log('voteChangeOnArticle TopicArticle')
         return voteArticle(articleId, vote)
             .then(body => {
-                const newArticle = body;
+                const newArticle = body.article;
                 const newArticles = this.state.articles.map(article => {
                     if (article._id === newArticle._id) {
                         return newArticle
@@ -56,8 +56,8 @@ voteChangeOnArticle = (articleId, vote) => {
                 <hr />
                 <br />
                 <br />
-                        <div className="container">        
-                        <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
+                        <div className="container"> 
+                        <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} topic={this.state.topic} /> 
                                    </div>
             </div>
         )

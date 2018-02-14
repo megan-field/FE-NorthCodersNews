@@ -22,7 +22,7 @@ class Home extends React.Component {
         console.log('voteChangeOnArticleHere')
         return voteArticle(articleId, vote)
             .then(body => {
-                const newArticle = body;
+                const newArticle = body.article;
                 const newArticles = this.state.articles.map(article => {
                     if (article._id === newArticle._id) {
                         return newArticle

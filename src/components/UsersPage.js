@@ -11,13 +11,12 @@ class UsersPage extends Component {
         fetchUsers(username)
         .then(res => {
             this.setState({
-                user: res.users
+                user: res.user
             })
         })
     }
 
     render() {
-        console.log(this.state.user[0])
         return (
             <div>
             {this.state.user[0] &&

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {fetchArticles, fetchComments, postingComment, deletingComment} from './api'
+import {fetchOneArticle, fetchComments, postingComment, deletingComment, voteComment} from './api'
+import CommentList from './CommentVotes';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom'
 
@@ -15,17 +16,13 @@ state = {
 componentDidMount() {
     let articleId = this.props.match.params._id
     Promise.all([
-        fetchArticles(),
+        fetchOneArticle(articleId),
         fetchComments(articleId)
     ])
     .then(([articleRes, commentsRes]) => {
-        let matchedArticle = articleRes.articles.filter(article => article._id === articleId)
-        let filteredComments = commentsRes.comments.sort((a, b) => {
-            return b.created_at - a.created_at;
-        })
         this.setState({
-        comments: filteredComments,
-        article: matchedArticle,
+        comments: commentsRes.comments,
+        article: articleRes.article,
         articleId: articleId
     })
     })
@@ -37,7 +34,7 @@ handleComment = (event) => {
   postingComment(this.state.articleId, comment)
   .then(res => {
     this.setState({
-        comments: [res.comment, ...this.state.comments]
+        comments: [res.newComment, ...this.state.comments]
     })
 })
 event.target.comment.value = '';
@@ -46,16 +43,29 @@ event.target.comment.value = '';
 deleteComment = (commentId) => {
     deletingComment(commentId)
     .then(res => {
-      if (res.status === 204)  return fetchComments(this.state.articleId)
+      if (res.status === 202)  return fetchComments(this.state.articleId)
     })
     .then(commentsRes => {
-        let filteredComments = commentsRes.comments.sort((a, b) => {
-            return b.created_at - a.created_at;
-        })
         this.setState({
-            comments: filteredComments
+            comments: commentsRes.comments
         })
     })
+}
+
+voteChangeOnComment = (commentId, vote) => {
+    return voteComment(commentId, vote)
+        .then(body => {
+            const newComment = body;
+            const newComments = this.state.comments.map(comment => {
+                if (comment._id === newComment._id) {
+                    return newComment
+                }
+                return comment;
+            })
+            this.setState({
+                comments: newComments
+            })
+        })
 }
 
 render() {
@@ -94,6 +104,7 @@ render() {
                         <Moment fromNow>{comment.created_at}</Moment>
                         <p>Created By:</p>
                    <Link to={`/users/${comment.created_by}`}><p>{comment.created_by}</p></Link>
+                        {/* <CommentList comments={this.state.comments} voteChangeOnComment={this.voteChangeOnComment} />  */}
                     </div>
                     )
                 })}
