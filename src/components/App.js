@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import ArticlesByTopic from './ArticlesByTopic';
 import ClickedArticle from './ClickedArticle';
 import UsersPage from './UsersPage';
+import AllUsers from './AllUsers';
 import Home from './Home'
 import './App.css';
 import { Route, BrowserRouter} from 'react-router-dom';
@@ -20,6 +21,7 @@ class App extends Component {
         <Route path="/topics/:topic_id/articles" component={ArticlesByTopic} />
         <Route path="/articles/:_id" component={ClickedArticle} />
         <Route path="/users/:username" component={UsersPage} />
+        <Route path="/users" component={AllUsers} />
       </div>
       </BrowserRouter>
     );

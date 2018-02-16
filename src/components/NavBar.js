@@ -26,6 +26,8 @@ class NavBar extends React.Component {
                <Link to={`/topics/${topic.slug}/articles`} key={i}>{topic.title}</Link>
            )
        })}
+       <Link to="/users">Users</Link> 
+       {/* DROP DOWN OF ALL USERS... LINKS TO EACH USERS PAGE */}
         </div>
     )}
 }
