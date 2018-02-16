@@ -4,8 +4,9 @@ export const fetchTopics = () => {
     return  fetch(`${URL}/topics`).then(res => res.json())
 }
 
-export const fetchArticles = (topic) => {
-    return topic ? fetch(`${URL}/topics/${topic}/articles`).then(res => res.json()) : fetch(`${URL}/articles`).then(res => res.json());
+export const fetchArticles = (topic, page) => {
+    if (!page) page = 1 
+    return (topic) ? fetch(`${URL}/topics/${topic}/articles?page=${page}`).then(res => res.json()) : fetch(`${URL}/articles?page=${page}`).then(res => res.json());
  }
 
 export const fetchOneArticle = (articleId) => {
