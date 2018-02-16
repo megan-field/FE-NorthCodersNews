@@ -10,7 +10,8 @@ state = {
     loading: true,
     article: [],
     articleId: null,
-    comments: []
+    comments: [],
+    current: 1
 }
 
 componentDidMount() {
@@ -52,20 +53,40 @@ deleteComment = (commentId) => {
     })
 }
 
-voteChangeOnComment = (commentId, vote) => {
-    return voteComment(commentId, vote)
-        .then(body => {
-            const newComment = body;
-            const newComments = this.state.comments.map(comment => {
-                if (comment._id === newComment._id) {
-                    return newComment
-                }
-                return comment;
-            })
+// voteChangeOnComment = (commentId, vote) => {
+//     return voteComment(commentId, vote)
+//         .then(body => {
+//             const newComment = body;
+//             const newComments = this.state.comments.map(comment => {
+//                 if (comment._id === newComment._id) {
+//                     return newComment
+//                 }
+//                 return comment;
+//             })
+//             this.setState({
+//                 comments: newComments
+//             })
+//         })
+// }
+
+fetchNextComments = (event) => {
+    let currentPage = this.state.current;
+    let nextPage = 0;
+
+    if (event.target.value === 'next') nextPage = +currentPage + 1;
+    if (event.target.value === 'previous') nextPage = +currentPage - 1;
+
+    if (nextPage < 0) nextPage = 0;
+    if (nextPage > 4) nextPage = 4;
+
+    return fetchComments(this.state.articleId, nextPage)
+        .then((res) => {
             this.setState({
-                comments: newComments
+                comments: res.comments,
+                current: nextPage
             })
         })
+        .catch(console.log);
 }
 
 render() {
@@ -109,6 +130,10 @@ render() {
                     )
                 })}
             </div>}
+            <div className="buttons">
+                 <button type="submit" value="previous" onClick={this.fetchNextComments} disabled={this.state.current < 2 ? true : false}>Previous</button>
+                 <button type="submit" value="next" onClick={this.fetchNextComments} disabled={this.state.comments.length < 5 ? true : false}>Next</button>
+        </div>
         </div>
     )
 }

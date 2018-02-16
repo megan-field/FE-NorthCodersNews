@@ -25,8 +25,9 @@ export const fetchOneArticle = (articleId) => {
     }).then(res => res.json());
 }
 
-export const fetchComments = (articleId) => {
-    return  fetch(`${URL}/articles/${articleId}/comments`).then(res => res.json())
+export const fetchComments = (articleId, page) => {
+    if (!page) page = 1
+    return  fetch(`${URL}/articles/${articleId}/comments?page=${page}`).then(res => res.json())
 }
 
 export const postingComment = (articleId, comment ) => {
