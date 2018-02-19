@@ -6,15 +6,15 @@ import { Button } from 'react-bootstrap'
 const Voter = ({ votes, onDownVote, onUpVote }) => {
     return (
         <div>
-            <Button onClick={onDownVote}>-</Button>
-            <span className="voteCount">{votes}</span>
-            <Button onClick={onUpVote}>+</Button>
+            <Button onClick={onDownVote}><i class="fas fa-thumbs-down"></i></Button>
+            <span className="voteCount">{votes} votes</span>
+            <Button onClick={onUpVote}><i class="fas fa-thumbs-up"></i></Button>
         </div>
     )
 }
 
 const ArticleList = ({articles, voteChangeOnArticle}) => (
-    <div>
+    <div className="articlelist">
         {articles.map((article, i) => {
             let id = article._id; 
             const onDownVote = voteChangeOnArticle.bind(null, article._id, 'down');
@@ -34,7 +34,7 @@ const ArticleList = ({articles, voteChangeOnArticle}) => (
                         onUpVote={onUpVote}
                         />               
                         <br />
-                        <Link to={`/users/${article.created_by}`}><p>Created by: {article.created_by}</p></Link>
+                        <Link to={`/users/${article.created_by}`}><p><i class="fas fa-user"></i> Created by: {article.created_by}</p></Link>
                         <br />
                 </div>
          <br />

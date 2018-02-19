@@ -2,6 +2,8 @@ import React from 'react';
 import ArticleList from './Votes';
 import {fetchArticles, fetchNewArticles, voteArticle} from './api'
 import './HomePage.css'
+import { Button } from 'react-bootstrap'
+
 
 
 
@@ -66,8 +68,8 @@ class Home extends React.Component {
          <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
 
          <div className="buttons">
-                 <button type="submit" value="previous" onClick={this.fetchNextPost} disabled={this.state.current < 2 ? true : false}>Previous</button>
-                 <button type="submit" value="next" onClick={this.fetchNextPost} disabled={this.state.articles.length < 10 ? true : false}>Next</button>
+                 <Button id="left" type="submit" value="previous" onClick={this.fetchNextPost} disabled={this.state.current < 2 ? true : false}><i class="fas fa-arrow-alt-circle-left"></i></Button>
+                 <Button type="submit" value="next" onClick={this.fetchNextPost} disabled={this.state.articles.length < 10 ? true : false}><i class="fas fa-arrow-alt-circle-right"></i></Button>
         </div>
                     </div>
     )
