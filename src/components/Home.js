@@ -1,6 +1,8 @@
 import React from 'react';
 import ArticleList from './Votes';
 import {fetchArticles, voteArticle} from './api'
+import './HomePage.css'
+
 
 class Home extends React.Component {
     state = {
@@ -19,7 +21,6 @@ class Home extends React.Component {
 
 
     voteChangeOnArticle = (articleId, vote) => {
-        console.log('voteChangeOnArticleHere')
         return voteArticle(articleId, vote)
             .then(body => {
                 const newArticle = body.article;
@@ -37,8 +38,7 @@ class Home extends React.Component {
 
   render() {
       return (
-          <div className="container">        
-
+          <div className="homeContainer">        
          <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
                     </div>
     )

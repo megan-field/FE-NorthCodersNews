@@ -1,13 +1,14 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {fetchTopics} from './api'
+import { Link } from 'react-router-dom';
+import { fetchTopics } from './api'
+import { Navbar, Nav, NavItem } from 'react-bootstrap'
 
 class NavBar extends React.Component {
     state = {
         topics: [],
     }
 
-    componentDidMount() {   
+    componentDidMount() {
         fetchTopics()
             .then(res => {
                 this.setState({
@@ -18,16 +19,28 @@ class NavBar extends React.Component {
     }
 
     render() {
-    return (
-        <div className='links'>
-        <Link  to="/">Home</Link>
-        { this.state.topics.map((topic, i) => {  
-           return (
-               <Link to={`/topics/${topic.slug}/articles`} key={i}>{topic.title}</Link>
-           )
-       })}
-        </div>
-    )}
+        return (
+            <Navbar>
+                {/* <Navbar.Header>
+                    <Navbar.Brand>
+                        <a href="#home">NorthCoders</a>
+                    </Navbar.Brand>
+                </Navbar.Header> */}
+                <Nav>
+                    <NavItem eventKey={1} href="#">
+                        <Link to="/">NorthCoders</Link>
+                    </NavItem>
+                    {this.state.topics.map((topic, i) => {
+                        return (
+                            <NavItem eventKey={2} href="#">
+                                <Link to={`/topics/${topic.slug}/articles`} key={i}>{topic.title}</Link>
+                            </NavItem>
+                        )
+                    })}
+                </Nav>
+            </Navbar>
+        )
+    }
 }
 
 export default NavBar;
