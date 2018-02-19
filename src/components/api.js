@@ -1,34 +1,48 @@
+const URL = 'http://localhost:3000/api'
+
 export const fetchTopics = () => {
-    return  fetch('https://northcoders-news-api.herokuapp.com/api/topics').then(res => res.json())
+    return  fetch(`${URL}/topics`).then(res => res.json())
 }
 
 export const fetchArticles = (topic) => {
-    return topic ? fetch(`https://northcoders-news-api.herokuapp.com/api/topics/${topic}/articles`).then(res => res.json()) : fetch('https://northcoders-news-api.herokuapp.com/api/articles').then(res => res.json());
+    return topic ? fetch(`${URL}/topics/${topic}/articles`).then(res => res.json()) : fetch(`${URL}/articles`).then(res => res.json());
+ }
+
+export const fetchOneArticle = (articleId) => {
+    return fetch(`${URL}/articles/${articleId}`).then(res => res.json());
  }
 
  export const voteArticle = (articleId, vote) => {
-    return fetch(`https://northcoders-news-api.herokuapp.com/api//articles/${articleId}?vote=${vote}`, {
+    return fetch(`${URL}/articles/${articleId}?vote=${vote}`, {
+        method: 'PUT'
+    }).then(res => res.json());
+}
+
+ export const voteComment = (commentId, vote) => {
+    return fetch(`${URL}/comments/${commentId}?vote=${vote}`, {
         method: 'PUT'
     }).then(res => res.json());
 }
 
 export const fetchComments = (articleId) => {
-    return  fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`).then(res => res.json())
+    return  fetch(`${URL}/articles/${articleId}/comments`).then(res => res.json())
 }
 
 export const postingComment = (articleId, comment ) => {
-    const data = {"comment": comment}
-    console.log(articleId)
-    return fetch(`https://northcoders-news-api.herokuapp.com/api/articles/${articleId}/comments`, {
+    const data = {"body": comment}
+    return fetch(`${URL}/articles/${articleId}/comments`, {
         method: 'POST',
-        // mode: 'cors',
         body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' }
     }).then(res => res.json());
 }
 
+export const deletingComment = (commentId) => {
+    return fetch(`${URL}/comments/${commentId}`, {
+        method: 'DELETE',
+    })
+}
+
 export const fetchUsers = (username) => {
-    return username ? fetch(`https://northcoders-news-api.herokuapp.com/api/users/${username}`).then(res => res.json()) : fetch('https://northcoders-news-api.herokuapp.com/api/users').then(res => res.json())
+    return username ? fetch(`${URL}/users/${username}`).then(res => res.json()) : fetch('https://northcoders-news-api.herokuapp.com/api/users').then(res => res.json())
 }
