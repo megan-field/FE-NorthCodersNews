@@ -1,0 +1,23 @@
+.articleDiv {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #CCC;
+    border-radius: 3;
+    margin-left: -5;
+    margin-top: 5;
+    padding: 10;
+    background-color: rgb(255, 255, 255);
+}
+
+.homeContainer {
+    width: 60%;
+    height: auto;
+    margin: auto;
+}
+
+.clickedArticle {
+    margin: 10%;
+}
+
+.voteCount {
+    margin: 3%;
+}
