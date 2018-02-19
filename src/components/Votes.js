@@ -42,6 +42,7 @@ const ArticleList = ({articles, voteChangeOnArticle}) => (
                 </div>
             )
         })}
+
     </div>
 );
 
