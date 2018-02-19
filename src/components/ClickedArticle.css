@@ -1,0 +1,47 @@
+.pageContainer {
+    width: 90%;
+    margin: auto;
+    padding-top: 3%;
+    background-color:rgba(255, 255, 255, 0.397); 
+}
+
+.buttons {
+    width: 70%;
+    margin: auto;
+    padding-bottom: 3%;
+    background-color:rgb(233, 239, 241); 
+}
+
+#postButton {
+    margin-right: 90%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+#postLabel {
+    margin-right: 84%;
+}
+
+.innerContainer {
+    width: 70%;
+    margin: auto;
+    padding-top: 3%;    
+    background-color:rgb(233, 239, 241);     
+}
+
+.textContainer {
+    width: 70%;
+    margin: auto;
+}
+
+.commentDiv {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #CCC;
+    border-radius: 3;
+    padding: 4%;
+    background-color: rgb(233, 239, 241);
+}
+
+#left {
+    margin-right: 40%;
+}
