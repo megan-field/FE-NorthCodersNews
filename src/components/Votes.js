@@ -3,47 +3,63 @@ import { Link } from 'react-router-dom'
 import './HomePage.css';
 import { Button } from 'react-bootstrap'
 
-const Voter = ({ votes, onDownVote, onUpVote }) => {
-    return (
-        <div>
-            <Button onClick={onDownVote}><i class="fas fa-thumbs-down"></i></Button>
-            <span className="voteCount">{votes} votes</span>
-            <Button onClick={onUpVote}><i class="fas fa-thumbs-up"></i></Button>
-        </div>
-    )
-}
+class ArticleList extends React.Component {
+    state = {
+        UPdisable: false,
+        DOWNdisable: false
+    }
 
-const ArticleList = ({articles, voteChangeOnArticle}) => (
-    <div className="articlelist">
-        {articles.map((article, i) => {
-            let id = article._id; 
-            const onDownVote = voteChangeOnArticle.bind(null, article._id, 'down');
-            const onUpVote = voteChangeOnArticle.bind(null, article._id, 'up');
-            return (
-                <div key={i}>
-                <div key={i} className="articleDiv">
-                    <Link to={`/articles/${id}`}>
-                    <div className="clickedArticle">
-                        <h1>{article.title}</h1>
-                        <p>{article.body}</p>
-                    </div>
-                    </Link>
-                    <Voter
-                        votes={article.votes}
-                        onDownVote={onDownVote}
-                        onUpVote={onUpVote}
-                        />               
-                        <br />
-                        <Link to={`/users/${article.created_by}`}><p><i class="fas fa-user"></i> Created by: {article.created_by}</p></Link>
-                        <br />
-                </div>
-         <br />
-         <br />
-                </div>
-            )
-        })}
+    handleUpChange = (onUpVote) => {
+        onUpVote()
+        this.setState({ UPdisable: true })
+    }
+   
+    handleDownChange = (onDownVote) => {
+        onDownVote()
+        this.setState({ DOWNdisable: true })
 
-    </div>
-);
+    }
+
+    render() {
+        return (
+            <div className="articlelist">
+                {this.props.articles &&
+                    this.props.articles.map((article, i) => {
+                        let id = article._id;
+                        let icon;
+                        if (article.belongs_to === "coding") icon = <i class="fas fa-file-code"></i>
+                        if (article.belongs_to === "cooking") icon = <i class="fas fa-utensils"></i>
+                        if (article.belongs_to === "football") icon = <i class="fas fa-futbol"></i>
+                        const onDownVote = this.props.voteChangeOnArticle.bind(null, article._id, 'down');
+                        const onUpVote = this.props.voteChangeOnArticle.bind(null, article._id, 'up');                        
+                        return (
+                            <div key={i}>
+                                <div key={i} className="articleDiv">
+                                    <Link to={`/articles/${id}`}>
+                                        <div className="clickedArticle">
+                                            <i>{icon}</i>
+                                            <h1>{article.title}</h1>
+                                            <p>{article.body}</p>
+                                        </div>
+                                    </Link>
+                                    <div>
+                                        <Button onClick={() => this.handleUpChange(onUpVote)} disabled={this.state.UPdisable}><i class="fas fa-thumbs-up"></i></Button>
+                                        <span className="voteCount">{article.votes} votes</span>
+                                        <Button onClick={() => this.handleDownChange(onDownVote)} disabled={this.state.DOWNdisable}><i class="fas fa-thumbs-down"></i></Button>
+                                    </div>
+                                    <br />
+                                    <Link to={`/users/${article.created_by}`}><p><i class="fas fa-user"></i> Created by: {article.created_by}</p></Link>
+                                    <br />
+                                </div>
+                                <br />
+                                <br />
+                            </div>
+                        )
+                    })}
+
+            </div>
+        )
+    }
+};
 
 export default ArticleList;

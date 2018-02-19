@@ -68,8 +68,8 @@ class Home extends React.Component {
          <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
 
          <div className="buttons">
-                 <Button id="left" type="submit" value="previous" onClick={this.fetchNextPost} disabled={this.state.current < 2 ? true : false}><i class="fas fa-arrow-alt-circle-left"></i></Button>
-                 <Button type="submit" value="next" onClick={this.fetchNextPost} disabled={this.state.articles.length < 10 ? true : false}><i class="fas fa-arrow-alt-circle-right"></i></Button>
+                 <Button id="left" type="submit" value="previous" onClick={this.fetchNextPost} disabled={this.state.current < 2 ? true : false}>Prev</Button>
+                 <Button type="submit" value="next" onClick={this.fetchNextPost} disabled={this.state.articles.length < 10 ? true : false}><i class="fas fa-arrow-alt-circle-right" /></Button>
         </div>
                     </div>
     )

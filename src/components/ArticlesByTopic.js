@@ -1,6 +1,7 @@
 import React from 'react';
 import {fetchArticles, voteArticle} from './api'
 import ArticleList from './Votes.js'
+import './HomePage.css'
 
 class ArticlesByTopic extends React.Component {
     state = {
@@ -24,9 +25,10 @@ class ArticlesByTopic extends React.Component {
     fetchAriclesByTopic(topic) {
         fetchArticles(topic)
         .then((res) => {
+           let displayTopic = topic[0].toUpperCase() + topic.slice(1)
                 this.setState({
                     articles: res.articles,
-                    topic: topic
+                    topic: displayTopic
                 })
             })
             .catch(console.log);
@@ -51,14 +53,9 @@ voteChangeOnArticle = (articleId, vote) => {
 
     render() {
         return (
-            <div>
-                <h1>{this.state.topic}</h1>
-                <hr />
-                <br />
-                <br />
-                        <div className="container"> 
+            <div className="homeContainer">
+                <h1 style={{padding: "4%"}}>{this.state.topic}</h1>
                         <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} topic={this.state.topic} /> 
-                                   </div>
             </div>
         )
     }
