@@ -1,0 +1,22 @@
+.userPage {
+    background-color: rgba(255, 255, 255, 0.397);
+    margin: auto;
+    width: 60%;
+    height: auto;
+    padding-top: 4%;
+    /* padding-bottom: 20%; */
+}
+
+#img {
+    border-style: solid;
+    border-width: 8px;
+    border-color: palevioletred;
+}
+
+.userContainer {
+    background-color: rgb(233, 239, 241);
+    width: 60%;
+    padding-top: 5%;
+    padding-bottom: 15%;
+    margin: auto;
+}
