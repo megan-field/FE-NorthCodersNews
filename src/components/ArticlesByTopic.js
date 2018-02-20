@@ -1,6 +1,6 @@
 import React from 'react';
 import {fetchArticles, voteArticle} from './api'
-import ArticleList from './Votes.js'
+import ArticleList from './ArticleList.js'
 import './HomePage.css'
 
 class ArticlesByTopic extends React.Component {

@@ -35,4 +35,9 @@
 
 #left {
     margin-right: 40%;
+    z-index: 100;
+    
+}
+#right {
+    z-index: 100;
 }
