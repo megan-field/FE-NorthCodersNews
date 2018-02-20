@@ -1,3 +1,4 @@
+@media only screen and (min-width: 700px) {
 .articleDiv {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     border: 1px solid #CCC;
@@ -7,23 +8,39 @@
     padding: 10;
     background-color: rgb(233, 239, 241);
 }
-
 .articlelist {
     width: 60%;
     padding-top: 3%;
     margin: auto;
 }
-
 .homeContainer {
     width: 90%;
     background-color: rgba(255, 255, 255, 0.397);
     height: auto;
     margin: auto;
 }
-
 .clickedArticle {
     margin: 10%;
 }
+}
+
+@media only screen and (max-width: 700px) {
+    .articleDiv {
+        width: 90%;
+        background-color:  rgb(233, 239, 241);
+        margin: auto;
+        padding-top: 2%;
+    }
+    .articleBody {
+        visibility: hidden;
+        display: none;
+        /* clear: both; */
+    }
+    .articleTitle {
+        font-size: 150%
+    }
+}
+
 
 .voteCount {
     margin: 3%;

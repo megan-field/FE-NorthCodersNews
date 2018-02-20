@@ -20,3 +20,14 @@
     padding-bottom: 15%;
     margin: auto;
 }
+
+@media only screen and (max-width: 700px) {
+    .userContainer {
+        width: 95%;
+        margin: auto;
+    }
+    .userPage {
+        width: 95%;
+        margin: auto;
+    }
+}

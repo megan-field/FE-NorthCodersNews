@@ -22,6 +22,13 @@ class NavBar extends React.Component {
     render() {
         return (
             <Navbar className="navbar">
+              <Navbar.Header>
+    {/* <Navbar.Brand>
+      <a href="#brand">NC</a>
+    </Navbar.Brand> */}
+    <Navbar.Toggle />
+  </Navbar.Header>
+  <Navbar.Collapse>
                 <Nav>
                     <NavItem eventKey={1} href="#">
                         <Link to="/">NorthCoders</Link>
@@ -34,6 +41,7 @@ class NavBar extends React.Component {
                         )
                     })}
                 </Nav>
+                </Navbar.Collapse>
             </Navbar>
         )
     }
