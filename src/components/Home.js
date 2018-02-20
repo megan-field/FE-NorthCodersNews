@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticleList from './ArticleList';
-import { fetchArticles, fetchNewArticles, voteArticle } from './api'
+import { fetchArticles, voteArticle } from './api'
 import './HomePage.css'
 import { Button } from 'react-bootstrap'
 
@@ -26,11 +26,9 @@ class Home extends React.Component {
 
 
     voteChangeOnArticle = (articleId, vote) => {
-        console.log("Getting here")
         return voteArticle(articleId, vote)
             .then(body => {
                 const newArticle = body.article;
-                console.log(newArticle)
                 const newArticles = this.state.articles.map(article => {
                     if (article._id === newArticle._id) {
                         return newArticle
@@ -56,8 +54,6 @@ class Home extends React.Component {
         
         return fetchArticles(null, nextPage)
             .then((res) => {
-                console.log('fetched new articles');
-                
                 this.setState({
                     articles: res.articles,
                     current: nextPage

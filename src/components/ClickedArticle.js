@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchOneArticle, fetchComments, postingComment, deletingComment, voteComment } from './api'
+import { fetchOneArticle, fetchComments, postingComment, deletingComment } from './api'
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom'
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'

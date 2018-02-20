@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Voter from './Voter.js'
 import './HomePage.css';
-import { Button } from 'react-bootstrap'
 
 
 const ArticleList = ({articles, voteChangeOnArticle}) => {
@@ -18,20 +17,20 @@ const ArticleList = ({articles, voteChangeOnArticle}) => {
                         return (
                             <div key={i}>
                                 <div key={i} className="articleDiv">
-                                    <Link to={`/articles/${id}`}>
                                         <div className="clickedArticle">
+                                    <Link to={`/articles/${id}`}>
                                             <img src={icon} alt="</>" style={{height:30}} />
                                             <h1 className="articleTitle">{article.title}</h1>
+                                    </Link>
                                             <p className="articleBody">{article.body}</p>
                                         </div>
-                                    </Link>
                                     <Voter
                                         votes={article.votes}
                                         articleId={article._id}
                                         voteChangeOnArticle={voteChangeOnArticle}
                                     />
                                     <br />
-                                    <Link to={`/users/${article.created_by}`}><p><i class="fas fa-user"></i> Created by: {article.created_by}</p></Link>
+                                    <Link to={`/users/${article.created_by}`}><p><i className="fas fa-user"></i> Created by: {article.created_by}</p></Link>
                                     <br />
                                 </div>
                                 <br />

@@ -18,9 +18,9 @@ class Voter extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this.handleUpdate.bind(null, "up")} disabled={this.state.updisable}><i class="fas fa-thumbs-up"></i></Button>
+                <Button onClick={this.handleUpdate.bind(null, "up")} disabled={this.state.updisable}><i className="fas fa-thumbs-up"></i></Button>
                 <span className="voteCount">{this.props.votes} votes</span>
-                <Button onClick={this.handleUpdate.bind(null, "down")} disabled={this.state.downdisable}><i class="fas fa-thumbs-down"></i></Button>
+                <Button onClick={this.handleUpdate.bind(null, "down")} disabled={this.state.downdisable}><i className="fas fa-thumbs-down"></i></Button>
             </div>
         )
     }

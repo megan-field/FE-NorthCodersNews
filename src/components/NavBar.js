@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { fetchTopics } from './api'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import './HomePage.css'
@@ -23,20 +22,17 @@ class NavBar extends React.Component {
         return (
             <Navbar className="navbar">
               <Navbar.Header>
-    {/* <Navbar.Brand>
-      <a href="#brand">NC</a>
-    </Navbar.Brand> */}
     <Navbar.Toggle />
   </Navbar.Header>
   <Navbar.Collapse>
                 <Nav>
-                    <NavItem eventKey={1} href="#">
-                        <Link to="/">NorthCoders</Link>
+                    <NavItem eventKey={1} href="/">
+                        NorthCoders
                     </NavItem>
                     {this.state.topics.map((topic, i) => {
                         return (
-                            <NavItem eventKey={2} href="#">
-                                <Link to={`/topics/${topic.slug}/articles`} key={i}>{topic.title}</Link>
+                            <NavItem eventKey={2} key={i} href={`/topics/${topic.slug}/articles`}>
+                                {topic.title}
                             </NavItem>
                         )
                     })}

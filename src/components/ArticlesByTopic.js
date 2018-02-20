@@ -9,12 +9,12 @@ class ArticlesByTopic extends React.Component {
         topic: null
     }
 
-    componentDidMount() {           // triggers the load
+    componentDidMount() {   
         const topic = this.props.match.params.topic_id
         this.fetchAriclesByTopic(topic);
     }
     
-    componentWillReceiveProps(nextProps) {   // triggers a reload when clicking another topic
+    componentWillReceiveProps(nextProps) {   
         const oldTopic = this.props.match.params.topic_id
         const newTopic = nextProps.match.params.topic_id
         if (oldTopic !== newTopic) {

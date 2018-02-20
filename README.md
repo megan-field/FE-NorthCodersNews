@@ -2,6 +2,8 @@
 
 Northcoders News is a social news aggregation, web content rating, and discussion website. It is similar to Reddit.
 
+It has been deployed on Heroku, [here](https://nc-news2018front-end.herokuapp.com/)
+
 ## SetUp
 
 In order to run NorthCodersNews you will need to have installed npm, git and Node.js.
