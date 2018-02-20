@@ -21,8 +21,8 @@ const ArticleList = ({articles, voteChangeOnArticle}) => {
                                     <Link to={`/articles/${id}`}>
                                         <div className="clickedArticle">
                                             <img src={icon} alt="</>" style={{height:30}} />
-                                            <h1>{article.title}</h1>
-                                            <p>{article.body}</p>
+                                            <h1 className="articleTitle">{article.title}</h1>
+                                            <p className="articleBody">{article.body}</p>
                                         </div>
                                     </Link>
                                     <Voter

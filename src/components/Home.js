@@ -47,15 +47,12 @@ class Home extends React.Component {
     fetchNextPost = (direction) => {
         let currentPage = this.state.current;
         let nextPage = 0;
-        console.log({currentPage});
-        
 
         if (direction === 'next') nextPage = +currentPage + 1;
         if (direction === 'previous') nextPage = +currentPage - 1;
 
         if (nextPage < 0) nextPage = 0;
         if (nextPage > 4) nextPage = 4;
-        console.log({nextPage});
         
         return fetchArticles(null, nextPage)
             .then((res) => {
