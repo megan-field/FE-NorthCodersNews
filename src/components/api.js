@@ -46,5 +46,5 @@ export const deletingComment = (commentId) => {
 }
 
 export const fetchUsers = (username) => {
-    return username ? fetch(`${URL}/users/${username}`).then(res => res.json()) : fetch('https://northcoders-news-api.herokuapp.com/api/users').then(res => res.json())
+    return username ? fetch(`${URL}/users/${username}`).then(res => res.json()) : fetch(`${URL}/users`).then(res => res.json())
 }

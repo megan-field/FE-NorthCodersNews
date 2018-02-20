@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTopics } from './api'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import './HomePage.css'
 
 class NavBar extends React.Component {
     state = {
@@ -20,12 +21,7 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <Navbar>
-                {/* <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="#home">NorthCoders</a>
-                    </Navbar.Brand>
-                </Navbar.Header> */}
+            <Navbar className="navbar">
                 <Nav>
                     <NavItem eventKey={1} href="#">
                         <Link to="/">NorthCoders</Link>

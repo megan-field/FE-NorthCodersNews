@@ -5,11 +5,18 @@
     margin-left: -5;
     margin-top: 5;
     padding: 10;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 239, 241);
+}
+
+.articlelist {
+    width: 60%;
+    padding-top: 3%;
+    margin: auto;
 }
 
 .homeContainer {
-    width: 60%;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.397);
     height: auto;
     margin: auto;
 }
@@ -20,4 +27,17 @@
 
 .voteCount {
     margin: 3%;
+}
+
+.navbar {
+    background-color: rgb(233, 239, 241);
+}
+
+#left {
+    margin-right: 40%;
+    z-index: 100;
+    
+}
+#right {
+    z-index: 100;
 }

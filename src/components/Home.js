@@ -1,7 +1,9 @@
 import React from 'react';
-import ArticleList from './Votes';
-import {fetchArticles, fetchNewArticles, voteArticle} from './api'
+import ArticleList from './ArticleList';
+import { fetchArticles, fetchNewArticles, voteArticle } from './api'
 import './HomePage.css'
+import { Button } from 'react-bootstrap'
+
 
 
 
@@ -11,22 +13,24 @@ class Home extends React.Component {
         current: 1
     }
 
-    componentDidMount() { 
-            fetchArticles()
-        .then(res => {
-            this.setState({
-                articles: res.articles,
-                current: res.current
+    componentDidMount() {
+        fetchArticles()
+            .then(res => {
+                this.setState({
+                    articles: res.articles,
+                    current: res.current
+                })
             })
-        })
-        .catch(console.log)
+            .catch(console.log)
     }
 
 
     voteChangeOnArticle = (articleId, vote) => {
+        console.log("Getting here")
         return voteArticle(articleId, vote)
             .then(body => {
                 const newArticle = body.article;
+                console.log(newArticle)
                 const newArticles = this.state.articles.map(article => {
                     if (article._id === newArticle._id) {
                         return newArticle
@@ -37,20 +41,26 @@ class Home extends React.Component {
                     articles: newArticles
                 })
             })
+            .catch(console.log)
     }
 
-    fetchNextPost = (event) => {
+    fetchNextPost = (direction) => {
         let currentPage = this.state.current;
         let nextPage = 0;
+        console.log({currentPage});
+        
 
-        if (event.target.value === 'next') nextPage = +currentPage + 1;
-        if (event.target.value === 'previous') nextPage = +currentPage - 1;
+        if (direction === 'next') nextPage = +currentPage + 1;
+        if (direction === 'previous') nextPage = +currentPage - 1;
 
         if (nextPage < 0) nextPage = 0;
         if (nextPage > 4) nextPage = 4;
-
+        console.log({nextPage});
+        
         return fetchArticles(null, nextPage)
             .then((res) => {
+                console.log('fetched new articles');
+                
                 this.setState({
                     articles: res.articles,
                     current: nextPage
@@ -58,20 +68,20 @@ class Home extends React.Component {
             })
             .catch(console.log);
 
-        }
+    }
 
-  render() {
-      return (
-          <div className="homeContainer">        
-         <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} /> 
+    render() {
+        return (
+            <div className="homeContainer">
+                <ArticleList articles={this.state.articles} voteChangeOnArticle={this.voteChangeOnArticle} />
 
-         <div className="buttons">
-                 <button type="submit" value="previous" onClick={this.fetchNextPost} disabled={this.state.current < 2 ? true : false}>Previous</button>
-                 <button type="submit" value="next" onClick={this.fetchNextPost} disabled={this.state.articles.length < 10 ? true : false}>Next</button>
-        </div>
-                    </div>
-    )
-}
+                <div className="buttons">
+                    <Button id="left" type="submit" onClick={this.fetchNextPost.bind(null, "previous")} disabled={this.state.current < 2 ? true : false}><i className="fas fa-arrow-alt-circle-left" /></Button>
+                    <Button id="right" type="submit" onClick={this.fetchNextPost.bind(null, "next")} disabled={this.state.articles.length < 10 ? true : false}><i className="fas fa-arrow-alt-circle-right" /></Button>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default Home
